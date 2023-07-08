@@ -2,6 +2,7 @@ import React , {useState , useEffect} from 'react';
 import { getCoin  } from '../services/api';
 import Loader from './Loader';
 import Coin from './Coin';
+import styles from './Landing.module.css'
 
 const Landing = () => {
     const [search , setSearch] = useState("")
@@ -21,10 +22,10 @@ const Landing = () => {
     return (
 
         <div>
-            <input type='text' placeholder='search...' value={search} onChange={searchHandler}/>
+            <input type='text' placeholder='search...' value={search} onChange={searchHandler} className={styles.input}/>
             {
                 coins.length ?
-                <div>
+                <div className={styles.container}>
                 {
                     searchedCoins.map(coin => <Coin 
                         key = {coin.key}
