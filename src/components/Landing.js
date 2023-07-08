@@ -1,5 +1,7 @@
 import React , {useState , useEffect} from 'react';
 import { getCoin  } from '../services/api';
+import Loader from './Loader';
+import Coin from './Coin';
 
 const Landing = () => {
     const [coins , setCoins] = useState([])
@@ -16,11 +18,23 @@ const Landing = () => {
 
         <div>
             <input type='text' placeholder='search...' />
-            <div>
+            {
+                coins.length ?
+                <div>
                 {
-                    coins.map(coin =>console.log(coin))
+                    coins.map(coin => <Coin 
+                        key = {coin.key}
+                        ename = {coin.key}
+                        name = {coin.name}
+                        price = {coin.price}
+                        changesin24h = {coin.percent_change_24h}
+                        topPrice = {coin.daily_high_price}
+                        />)
                 }
-            </div>
+              </div> :
+              <Loader />
+            }
+     
         </div>
     );
 };
